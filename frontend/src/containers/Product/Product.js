@@ -34,7 +34,7 @@ const Product = ({match}) => {
                     </ProductItem>
                     }
                     <Button
-                        style={{textDecoration: 'none', padding: '5px 0 10px'}}
+                        style={{textDecoration: 'none', padding: '5px 0 10px', display: 'flex', marginLeft: 'auto'}}
                         onClick={() => deleteProduct(product._id)}
                     >
                         Delete

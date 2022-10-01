@@ -91,12 +91,29 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
 });
 
 router.delete('/:id', auth, async (req, res) => {
-    try {
-        await Product.deleteOne({_id: req.params.id});
-        res.send({message: 'product deleted'});
-    } catch (e) {
-        res.sendStatus(500);
+    const token = req.get('Authorization');
+    const user = await User.findOne({token});
+    const product = await Product.findOne({_id: req.params.id}).populate('user', 'username')
+
+    if (!token) {
+        return res.status(401).send({error: 'No token present!'});
     }
+
+    if (!user) {
+        return res.status(401).send({error: 'Wrong token!'});
+    }
+
+    if(product.user.username === user.username) {
+        try {
+            await Product.deleteOne({_id: req.params.id});
+            res.send({message: 'product deleted'});
+        } catch (e) {
+            res.sendStatus(500);
+        }
+    } else {
+        return res.status(403).send({error: 'You not owner this product'});
+    }
+
 });
 
 module.exports = router;

@@ -76,13 +76,11 @@ const AddProductForm = () => {
             <TextField
                 label="Title"
                 name="title"
-                required
                 sx={{marginBottom: '30px'}}
                 value={state.title}
                 onChange={inputChangeHandler}
             />
             <TextField
-                required
                 multiline
                 rows={3}
                 sx={{marginBottom: '30px'}}
@@ -93,7 +91,6 @@ const AddProductForm = () => {
             />
             <TextField
                 multiline
-                required
                 rows={3}
                 sx={{marginBottom: '30px'}}
                 label="Price"
@@ -108,7 +105,7 @@ const AddProductForm = () => {
                     style={{padding: "10px", marginBottom: "20px"}}
                 >
                     {categories.map(c => {
-                        return <option value={c._id}>{c.title}</option>
+                        return <option key={c._id} value={c._id}>{c.title}</option>
                     })}
                 </select>
             <FileInput
