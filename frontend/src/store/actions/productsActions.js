@@ -13,6 +13,10 @@ export const CREATE_PRODUCT_REQUEST = 'CREATE_PRODUCT_REQUEST';
 export const CREATE_PRODUCT_SUCCESS = 'CREATE_PRODUCT_SUCCESS';
 export const CREATE_PRODUCTS_FAILURE = 'CREATE_PRODUCTS_FAILURE';
 
+export const DELETE_PRODUCT_REQUEST = 'DELETE_PRODUCT_REQUEST';
+export const DELETE_PRODUCT_SUCCESS = 'DELETE_PRODUCT_SUCCESS';
+export const DELETE_PRODUCTS_FAILURE = 'CREATE_PRODUCTS_FAILURE';
+
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 const fetchProductsRequest = () => ({type: FETCH_PRODUCTS_REQUEST});
@@ -26,6 +30,10 @@ const fetchProductFailure = error => ({type: FETCH_PRODUCT_FAILURE, payload: err
 const createProductRequest = () => ({type: CREATE_PRODUCT_REQUEST});
 const createProductSuccess = () => ({type: CREATE_PRODUCT_SUCCESS});
 const createProductFailure = error => ({type: CREATE_PRODUCTS_FAILURE, payload: error});
+
+const deleteProductRequest = () => ({type: DELETE_PRODUCT_REQUEST});
+const deleteProductSuccess = () => ({type: DELETE_PRODUCT_SUCCESS});
+const deleteProductFailure = error => ({type: DELETE_PRODUCTS_FAILURE, payload: error});
 
 export const clearErrors = () => ({type: CLEAR_ERRORS});
 
@@ -60,19 +68,35 @@ export const fetchProduct = id => {
     }
 };
 
-export const createProduct = (postData) => {
+export const createProduct = (productData) => {
     return async (dispatch, getState) => {
         try {
             const headers = {
                 'Authorization': getState().users.user && getState().users.user.token,
             };
-            console.log(postData);
+            console.log(productData);
             dispatch(createProductRequest());
-            await axiosApi.post('/products', postData, {headers});
+            await axiosApi.post('/products', productData, {headers});
             dispatch(createProductSuccess());
             dispatch(historyPush('/'));
         } catch (e) {
             dispatch(createProductFailure(e.message));
+        }
+    }
+};
+
+export const deleteProductAction = (id) => {
+    return async (dispatch, getState) => {
+        try {
+            const headers = {
+                'Authorization': getState().users.user && getState().users.user.token,
+            };
+            dispatch(deleteProductRequest());
+            await axiosApi.delete('/products/' + id, {headers});
+            dispatch(deleteProductSuccess());
+            dispatch(historyPush('/'));
+        } catch (e) {
+            dispatch(deleteProductFailure(e.message));
         }
     }
 };

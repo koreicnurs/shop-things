@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {Box} from "@mui/material";
-import {fetchProduct} from "../../store/actions/productsActions";
+import {Box, Button} from "@mui/material";
+import {deleteProductAction, fetchProduct} from "../../store/actions/productsActions";
 import ProductItem from "../../components/ProductItem/ProductItem";
 
 const Product = ({match}) => {
@@ -14,16 +14,9 @@ const Product = ({match}) => {
         dispatch(fetchProduct(match.params.id));
     }, [dispatch, match.params.id]);
 
-    // let comment;
-
-    // if (!user) {
-    //     comment = null;
-    // } else {
-    //     comment = product && <FormComment
-    //         postId={product._id}
-    //         user={user._id}
-    //     />
-    // }
+    const deleteProduct = (id) => {
+      dispatch(deleteProductAction(id))
+    };
 
     return (
         <div>
@@ -39,7 +32,12 @@ const Product = ({match}) => {
                     >
                     </ProductItem>
                     }
-
+                    <Button
+                        style={{textDecoration: 'none', padding: '5px 0 10px'}}
+                        onClick={() => deleteProduct(product._id)}
+                    >
+                        Delete
+                    </Button>
                 </>
             }
         </div>
