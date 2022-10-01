@@ -3,8 +3,8 @@ const {nanoid} = require('nanoid');
 const config = require('./config');
 
 const User = require('./models/User');
-const Post = require('./models/Product');
-const Comment = require('./models/Category');
+const Product = require("./models/Product");
+const Category = require("./models/Category");
 
 
 const run = async () => {
@@ -16,58 +16,56 @@ const run = async () => {
         await mongoose.connection.db.dropCollection(coll.name);
     }
 
-   const [ksansaUser, sergeiUser, nursUser] = await User.create({
+    const [ksansaUser, sergeiUser, nursUser] = await User.create({
         username: 'ksansa',
         password: 'lapkaqwerty',
         token: nanoid(),
+        displayName: 'Olya',
+        phone: '+996 123123'
     }, {
         username: 'sergei',
         password: 'coolboy',
         token: nanoid(),
+        displayName: 'Sergei',
+        phone: '+996 234234'
     }, {
         username: 'nursultan',
-        password: 'supercoolboy',
+        password: '123',
         token: nanoid(),
+        displayName: 'Nursultan',
+        phone: '+996 555555'
     });
 
-    const [ aPost, bPost, cPost ] = await Post.create({
-        title: 'THE IDIOT',
+    const [comp, home, car] = await Category.create({
+        title: 'Computers'
+    }, {
+        title: 'Home'
+    }, {
+        title: 'Car'
+    });
+
+    await Product.create({
+        title: 'Comp',
         user: sergeiUser._id,
-        datetime: new Date().toISOString(),
-        description: 'Today even "nice girls" can be dangerous. This heiress, 16, assaulted three sailors',
-        image: 'fixtures/first.jpg',
+        category: comp._id,
+        description: 'Computer for games',
+        image: 'fixtures/comp.jpg',
+        price: 50000,
     }, {
-        title: 'Grand Budapest Hotel',
+        title: 'sofa',
         user: nursUser._id,
-        datetime: new Date().toISOString(),
-        description: 'A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel\'s glorious years under an exceptional concierge.',
+        category: home._id,
+        description: 'for one person',
         image: 'fixtures/second.jpg',
+        price: 20000,
     }, {
-        title: 'Утешение',
+        title: 'BMW',
         user: ksansaUser._id,
-        datetime: new Date().toISOString(),
-        description: '1894',
+        category: car._id,
+        description: '2000 year v6 4wd',
         image: 'fixtures/third.jpg',
+        price: 100000,
     });
-
-    await Comment.create({
-       post: aPost._id,
-       user: nursUser._id,
-       text: 'A novel in Two Books',
-       datetime:  new Date().toISOString(),
-    },{
-       post: bPost._id,
-       user: ksansaUser._id,
-       text: 'Уэс Андерсон снял фильм в трех различных соотношениях сторон: 1,33, 1,85 и 2,35:1, которые соответствуют трем разным отрезкам времени. Разные пропорции кадра подсказывают зрителям, какой временной период на экране.',
-       datetime:  new Date().toISOString(),
-    },{
-       post: cPost._id,
-       user: sergeiUser._id,
-       text: 'Темнота и утешенье',
-       datetime:  new Date().toISOString(),
-    });
-
-
 
     await mongoose.connection.close();
 };

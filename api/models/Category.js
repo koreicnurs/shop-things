@@ -9,7 +9,7 @@ const CategorySchema = new Schema({
     },
 });
 
-CommentSchema.plugin(idValidator, {message: 'Bad ID value for {PATH}'});
-const Category = mongoose.model('Comment', CategorySchema);
+CategorySchema.plugin(idValidator, {message: 'Bad ID value for {PATH}'});
+const Category = mongoose.model('Category', CategorySchema);
 
 module.exports = Category;
