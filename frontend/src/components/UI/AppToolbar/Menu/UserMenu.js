@@ -43,12 +43,12 @@ const UserMenu = ({user}) => {
         }}
       >
           <MenuItem onClick={handleClose}>
-              <Link to={'/posts/new'} style={{color: 'inherit',
+              <Link to={'/products/new'} style={{color: 'inherit',
                   textDecoration: 'none',
                   '&:hover': {
                       color: 'inherit'
                   }}}>
-                  Add post
+                  Add product
               </Link>
           </MenuItem>
           <MenuItem onClick={() => dispatch(logoutUser())}>Logout</MenuItem>

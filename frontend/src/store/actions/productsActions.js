@@ -67,7 +67,7 @@ export const createProduct = (postData) => {
             const headers = {
                 'Authorization': getState().users.user && getState().users.user.token,
             };
-
+            console.log(postData);
             dispatch(createProductRequest());
             await axiosApi.post('/products', postData, {headers});
             dispatch(createProductSuccess());
