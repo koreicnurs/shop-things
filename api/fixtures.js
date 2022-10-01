@@ -3,8 +3,8 @@ const {nanoid} = require('nanoid');
 const config = require('./config');
 
 const User = require('./models/User');
-const Post = require('./models/Post');
-const Comment = require('./models/Comment');
+const Post = require('./models/Product');
+const Comment = require('./models/Category');
 
 
 const run = async () => {

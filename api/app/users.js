@@ -6,8 +6,8 @@ const router = express.Router();
 router.post('/', async(req, res) => {
 
     try {
-        const {username, password} = req.body;
-        const userData = {username, password};
+        const {username, password, displayName, phone} = req.body;
+        const userData = {username, password, displayName, phone};
         const user = new User(userData);
 
         user.generateToken();
@@ -20,7 +20,7 @@ router.post('/', async(req, res) => {
 });
 
 router.post('/sessions', async(req, res) => {
-    const { username, password } = req.body;
+    const { username, password} = req.body;
 
     const user = await User.findOne({username});
 

@@ -37,6 +37,8 @@ const Register = () => {
     const [user, setUser] = useState({
         username: '',
         password: '',
+        displayName: '',
+        phone: ''
     });
 
     useEffect(() => {
@@ -98,6 +100,26 @@ const Register = () => {
                         value={user.password}
                         onChange={inputChangeHandler}
                         error={getFieldError('password')}
+                    />
+
+                    <FormElement
+                        type="displayName"
+                        required={true}
+                        label="Display Name"
+                        name="displayName"
+                        value={user.displayName}
+                        onChange={inputChangeHandler}
+                        error={getFieldError('displayName')}
+                    />
+
+                    <FormElement
+                        type="phone"
+                        required={true}
+                        label="Phone"
+                        name="phone"
+                        value={user.phone}
+                        onChange={inputChangeHandler}
+                        error={getFieldError('phone')}
                     />
 
                     <Grid item xs={12}>
