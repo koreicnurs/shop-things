@@ -6,7 +6,6 @@ const {nanoid} = require('nanoid');
 const config = require('../config');
 const auth = require("../middleware/auth");
 const User = require("../models/User");
-const Category = require('../models/Category');
 const Product = require("../models/Product");
 
 const router = express.Router();

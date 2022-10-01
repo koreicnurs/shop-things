@@ -8,7 +8,6 @@ const Product = ({match}) => {
     const dispatch = useDispatch();
     const product = useSelector(state => state.products.product);
     const loading = useSelector(state => state.products.singleLoading);
-    const user = useSelector(state => state.users.user);
 
     useEffect(() => {
         dispatch(fetchProduct(match.params.id));
