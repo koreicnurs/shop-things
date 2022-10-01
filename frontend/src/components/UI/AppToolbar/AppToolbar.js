@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {makeStyles} from "tss-react/mui";
-// import 'react-toastify/dist/ReactToastify.css';
 import {AppBar, Grid, Toolbar, Typography} from "@mui/material";
 import Anonymous from "./Menu/Anonymous";
 import UserMenu from "./Menu/UserMenu";
@@ -34,7 +33,7 @@ const AppToolbar = () => {
            <Grid item>
              <Typography variant="h6" >
                <Link to="/" className={classes.mainLink}>
-                 Forum
+                 Shop
                </Link>
              </Typography>
            </Grid>

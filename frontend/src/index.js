@@ -8,6 +8,7 @@ import {Router} from "react-router-dom";
 import {Provider} from "react-redux";
 import usersReducer from "./store/reducers/usersReducer";
 import history from "./history";
+import productsReducer from "./store/reducers/productsReducer";
 
 const saveToLocalStorage = state => {
     try {
@@ -37,6 +38,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     users: usersReducer,
+    products: productsReducer,
 });
 
 const persistedState = loadFromLocalStorage();
