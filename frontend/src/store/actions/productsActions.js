@@ -1,5 +1,6 @@
 import axiosApi from "../../axiosApi";
 import {historyPush} from "./historyActions";
+import {toast} from "react-toastify";
 
 export const FETCH_PRODUCTS_REQUEST = 'FETCH_PRODUCTS_REQUEST';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
@@ -96,6 +97,28 @@ export const deleteProductAction = (id) => {
             dispatch(deleteProductSuccess());
             dispatch(historyPush('/'));
         } catch (e) {
+            if (e.response.status === 401) {
+                toast.warn('You need login!', {
+                    position: "top-right",
+                    autoClose: 3500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
+            if (e.response.status === 403) {
+                toast.warn('Not Urs product', {
+                    position: "top-right",
+                    autoClose: 3500,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
             dispatch(deleteProductFailure(e.message));
         }
     }

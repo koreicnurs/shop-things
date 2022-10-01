@@ -23,10 +23,21 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 router.get('/', async (req, res) => {
+
+    const query = {};
+
+    if(req.query.category) {
+        query.category = req.query.category;
+    }
+
+    if(req.query.user) {
+        query.user = req.query.user;
+    }
+
     try {
         const products = await Product
-            .find()
-            .populate('user category', 'username title')
+            .find(query)
+            .populate('user category', 'username title');
 
         res.send(products);
     } catch {
