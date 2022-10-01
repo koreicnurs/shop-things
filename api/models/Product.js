@@ -18,6 +18,7 @@ const PostSchema = new Schema({
     },
     price: {
         type: Number,
+        min: 0,
         required: true,
     },
     description: String,

@@ -28,6 +28,7 @@ const AddProductForm = () => {
         }
     }, [dispatch]);
 
+
     if (!user) {
         return <Redirect to="/login"/>
     }

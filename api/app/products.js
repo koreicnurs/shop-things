@@ -76,6 +76,10 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
         return res.status(400).send({error: 'Data not valid'});
     }
 
+    if (price < 0)  {
+        return res.status(400).send({error: 'Write normal price'});
+    }
+
     const productData = {
         title,
         user,
