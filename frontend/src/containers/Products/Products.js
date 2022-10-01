@@ -34,7 +34,7 @@ const Products = () => {
                         <Button
                             component={Link}
                             style={{textDecoration: 'none', padding: '5px 0 10px'}}
-                            to={'/products/' + p._id}
+                            to={`products/${p._id}`}
                         >
                             Read more
                         </Button>

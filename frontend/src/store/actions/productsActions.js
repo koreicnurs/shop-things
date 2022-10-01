@@ -53,7 +53,6 @@ export const fetchProduct = id => {
             dispatch(fetchProductRequest());
 
             const response = await axiosApi('/products/' + id);
-
             dispatch(fetchProductSuccess(response.data));
         } catch (e) {
             dispatch(fetchProductFailure(e.message));
