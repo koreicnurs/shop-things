@@ -15,7 +15,7 @@ const ProductItem = ({children, username, title, description, price, image}) => 
     return (
         <Grid item xs={12}>
             <Card sx={{height: '100%', padding: '0 15px'}}>
-                <CardHeader title={username} sx={{textTransform: "capitalize"}}/>
+                <CardHeader title={`User ${username}`} sx={{textTransform: "capitalize"}}/>
                 <CardMedia
                     title={title}
                     image={cardImage}
@@ -23,10 +23,10 @@ const ProductItem = ({children, username, title, description, price, image}) => 
                 />
                 <CardContent>
                     <Typography variant={"h6"}>
-                        {title}
+                        Product Name - {title}
                     </Typography>
                     <Typography>
-                        {description}
+                        Description: {description}
                     </Typography>
                     <Typography style={{fontWeight: "bold", fontSize: '14px' }}>
                         <small>Price: {price}</small>

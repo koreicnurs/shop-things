@@ -61,7 +61,7 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
         return res.status(401).send({error: 'Wrong token!'});
     }
 
-    if (!title || !user || !description || !category || !image || !price)  {
+    if (!title || !user || !description || !category || !price)  {
         return res.status(400).send({error: 'Data not valid'});
     }
 
@@ -76,6 +76,8 @@ router.post('/', [auth, upload.single('image')], async (req, res) => {
 
     if (req.file) {
         productData.image = 'uploads/' + req.file.filename;
+    } else if (!image)  {
+        return res.status(400).send({error: 'Data not valid'});
     }
 
     try {

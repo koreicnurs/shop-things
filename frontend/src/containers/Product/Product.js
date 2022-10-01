@@ -29,6 +29,7 @@ const Product = ({match}) => {
                         title={product.title}
                         description={product.description}
                         image={product.image}
+                        price={product.price}
                     >
                     </ProductItem>
                     }

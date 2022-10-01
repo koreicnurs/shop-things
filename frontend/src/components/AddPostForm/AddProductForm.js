@@ -105,7 +105,7 @@ const AddProductForm = () => {
                     name="category"
                     onChange={inputChangeHandler}
                     value={state.category}
-                    style={{padding: "10px"}}
+                    style={{padding: "10px", marginBottom: "20px"}}
                 >
                     {categories.map(c => {
                         return <option value={c._id}>{c.title}</option>
